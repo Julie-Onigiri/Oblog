@@ -1,10 +1,15 @@
-const {Router} = require("express");
-const controller = require("./controller.js");
 
-const router = Router();
-// affichage de la Homepage
-router.get("/",controller.displayHomepage);
+// On importe le controller
+const controller = require('./controller');
 
-router.get('/article/:id', controller.articles);
+const express = require('express');
+// initialise le routeur
+const router = express.Router();
 
-module.exports = router;
+
+// créer la premiere route de lurl
+router.get('/', controller.homePage); 
+router.get('/article/:id', controller.articlePage);
+
+router.get('/category/:name', controller.categoryPage);
+ module.exports = router;

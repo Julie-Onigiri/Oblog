@@ -1,22 +1,22 @@
-// fichier de lancement de notre serveur
+//  Config des const
+const express = require('express');
 
-
-const express = require("express");
-const app = express();
-/// Configuration du moteur de rendu
-app.set('views', './app/views');
-app.set('view engine', 'ejs'); 
-
-app.use(express.json());
-
-/// Gestion des fichiers statiques
-app.use(express.static('static'));
-
-/// Gestion des routes
-const router = require("./app/router");
-app.use(router);
+const router = require('./app/router');
 
 const PORT = 3000;
-app.listen(PORT,()=>{
-    console.log(`site accessible sur : http://localhost:${PORT}`);
+
+const app = express();
+// config du chemin des views et du moteur
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/app/views');
+app.use(express.static(__dirname + '/static'));
+
+app.use(router);
+
+app.listen(PORT, () => {
+console.log('http://localhost:3000');
 });
+
+
+    
+  
